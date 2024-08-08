@@ -1,3 +1,5 @@
+// imports clientes
+
 import { connection } from "../config/database.js";
 import { DataTypes } from "sequelize";
 import { Reserva } from "./reserva.js";
