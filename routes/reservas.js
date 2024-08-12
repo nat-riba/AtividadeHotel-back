@@ -38,13 +38,13 @@ reservasRouter.delete("/reservas/:id", async (req, res) => {
 });
 
 reservasRouter.post("/reservas", async (req, res) => {
-  const { nome, tipo, porte, dataNasc, clienteId } = req.body;
+  const { data_check_in, data_check_out, status, clienteId } = req.body;
 
   try {
     const cliente = await Cliente.findByPk(clienteId);
 
     if (cliente) {
-      await Reserva.create({ nome, tipo, porte, dataNasc, clienteId });
+      await Reserva.create({ data_check_in, data_check_out, status, clienteId });
       res.json({ message: "reserva criada com sucesso." });
     } else {
       res
@@ -58,12 +58,12 @@ reservasRouter.post("/reservas", async (req, res) => {
 
 // [PUT] /reservas/:id -> Atualizar um reserva
 reservasRouter.put("/reservas/:id", async (req, res) => {
-  const { nome, tipo, porte, dataNasc } = req.body;
+  const { data_check_in, data_check_out, status } = req.body;
 
   try {
     const reserva = await Reserva.findByPk(req.params.id);
     if (reserva) {
-      await reserva.update({ nome, tipo, porte, dataNasc });
+      await reserva.update({ data_check_in, data_check_out, status });
       res.json({ message: "reserva atualizada com sucesso." });
     } else {
       res.status(404).json({ message: "reserva não encontrada." });

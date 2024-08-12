@@ -4,6 +4,7 @@ import { reservasRouter } from "./routes/reservas.js";
 import { quartosRouter } from "./routes/quartos.js";
 import express from "express";
 import { pagamentosRouter } from "./routes/pagamentos.js";
+import cors from "cors"
 
 authenticate(connection).then (() => {
 
@@ -13,6 +14,8 @@ authenticate(connection).then (() => {
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 app.use(clientesRouter);
 app.use(reservasRouter);
